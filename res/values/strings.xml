@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">
+	Stargate Asgard/Wraith/Ancient/Goa uld/Furling/Nox translator
+	enter text you want to translate bellow
+	</string>
+	<string name="convert">Convert to image</string>
+	<string name="showAlphabet">Show Alphabet</string>
+	<string name="back">Back</string>
+    <string name="app_name">Stargate Languages Translator</string>
+	<string name="changeLangage">Change Language</string>
+	<string name="defaulttext">Hello world from stargate translator</string>
+</resources>
