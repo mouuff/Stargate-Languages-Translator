@@ -56,7 +56,7 @@ public class MainActivity extends Activity
 		final int[] LanguagesSize = {35, 23, 45, 27,33,25};
 		
 		hello.setTextSize(15);
-		output.setTextSize(25);
+		output.setTextSize(35);
 		
 		output.setTypeface(Ancient);
 		
@@ -101,29 +101,36 @@ public class MainActivity extends Activity
 			public void onClick(View p1){
 				final Dialog dialog = new Dialog(context);
 				dialog.setContentView(R.layout.alphabet);
+				TextView facts = (TextView) dialog.findViewById(R.id.facts);
 				ImageView image = (ImageView) dialog.findViewById(R.id.image);
 				if (choice == 0){
 					dialog.setTitle("Ancient Alphabet");
+					facts.setText(getText(R.string.ancientfacts));
 					image.setImageResource(R.drawable.ancientglyphs);
 				}
 				else if (choice == 1){
 					dialog.setTitle("Asgard Alphabet");
+					facts.setText(getText(R.string.asgardfacts));
 					image.setImageResource(R.drawable.asgardalphabet);
 				}
 				else if (choice == 2){
 					dialog.setTitle("Wraith Alphabet");
+					facts.setText(getText(R.string.wraithfacts));
 					image.setImageResource(R.drawable.wraith);
 				}
 				else if (choice == 3){
 					dialog.setTitle("One of Goa'uld's Alphabet");
+					facts.setText(getText(R.string.goauldfacts));
 					image.setImageResource(R.drawable.goa_uld1);
 				}
 				else if (choice == 4){
 					dialog.setTitle("Furling Alphabet");
+					facts.setText(getText(R.string.furlingfacts));
 					image.setImageResource(R.drawable.furling);
 				}
 				else{
 					dialog.setTitle("Nox Alphabet");
+					facts.setText(getText(R.string.noxfacts));
 					image.setImageResource(R.drawable.nox);
 				}
 				Button ok = (Button) dialog.findViewById(R.id.dimiss);

@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<string name="app_name">Stargate Languages Translator</string>
     <string name="hello">
-	Stargate Asgard/Wraith/Ancient/Goa uld/Furling/Nox translator
+	"Stargate Asgard/Wraith/Ancient/Goa'uld/Furling/Nox translator
 	enter text you want to translate bellow
+	enjoy it :)"
 	</string>
 	<string name="convert">Convert to image</string>
 	<string name="showAlphabet">Show Alphabet</string>
 	<string name="back">Back</string>
-    <string name="app_name">Stargate Languages Translator</string>
 	<string name="changeLangage">Change Language</string>
 	<string name="defaulttext">Hello world from stargate translator</string>
+	
+	<string name="ancientfacts">
+		"Ancient is the name given to the language spoken and written by the Alterans and their descendants, the Ancients and the Ori. The language is fairly similar to Latin spoken on Earth."
+	</string>
+	
+	<string name="asgardfacts">
+		"This language is believed to have influenced some of the Germanic languages on Earth called Futhark on earth."
+	</string>
+	<string name="wraithfacts">
+		"The language of the Wraith is a derivative of the language of the Ancients. The Wraith use a series of symbols which are similar to the Ancient alphabet"
+	</string>
+	<string name="goauldfacts">
+		"This language is the main form of communication for the Goa'uld, the Tok'ra, and the Jaffa races. Several human cultures under the rule of the Goa'uld also speak the Goa'uld tongue, either as their main communication or in addition to their own. Though there are several dialects, there appears to be one common to all Goa'uld, Tok'ra, and Jaffa."
+	</string>
+	<string name="noxfacts">
+		"Nox is the language spoken widely spoken by the Nox. Though the language sounds completely alien to most Humans from Earth, Anteaus told SG-1 that it would take time to learn their language."
+	</string>
+	<string name="furlingfacts">
+		"The Tau'ri have only encountered these writings twice, once on the planet Heliopolis and the other time on the planet P5X-777 where there was a portal leading to the paradise on the Utopian moon."
+	</string>
 </resources>
