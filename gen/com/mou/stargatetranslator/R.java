@@ -25,6 +25,7 @@ public final class R {
         public static final int changeLangage=0x7f050008;
         public static final int convert=0x7f050006;
         public static final int dimiss=0x7f050002;
+        public static final int donate=0x7f05000b;
         public static final int emailme=0x7f05000a;
         public static final int facts=0x7f050001;
         public static final int hello=0x7f050003;

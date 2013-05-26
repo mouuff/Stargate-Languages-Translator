@@ -53,7 +53,7 @@ public class MainActivity extends Activity
 		
 		final Typeface[] Languages= {Ancient,Asgard,Wraith,Goauld1, Furling, Nox};
 		final String[] LanguagesNames = {"Ancient","Asgard","Wraith","Goa'uld (decorative)", "Furling","Nox"};
-		final int[] LanguagesSize = {35, 23, 45, 27,33,25};
+		final int[] LanguagesSize = {35, 23, 45, 27,38,25};
 		
 		hello.setTextSize(15);
 		output.setTextSize(35);
@@ -170,6 +170,9 @@ public class MainActivity extends Activity
 			
 			case R.id.rateit:
 			    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.mou.stargatetranslator")));
+				return true;
+			case R.id.donate:
+			    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.mou.donate")));
 				return true;
 			
 			default:
