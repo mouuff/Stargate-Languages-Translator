@@ -30,6 +30,7 @@ public class MainActivity extends Activity
 	}
 	final Context context = this;
 	int choice = 0;
+	boolean changed = false;
     @Override
     public void onCreate(Bundle savedInstanceState)
 	{
@@ -40,7 +41,7 @@ public class MainActivity extends Activity
 		final TextView hello = (TextView) findViewById(R.id.hello);
 		final EditText input = (EditText) findViewById(R.id.input);
 		
-		Button convert = (Button) findViewById(R.id.convert);
+		final Button convert = (Button) findViewById(R.id.convert);
 		Button showAlphabet = (Button) findViewById(R.id.showAlphabet);
 		Button changeLangage = (Button) findViewById(R.id.changeLangage);
 		
@@ -62,6 +63,10 @@ public class MainActivity extends Activity
 		
 		input.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s){
+				if (!changed){
+					changed = true;
+					convert.setEnabled(true);
+				}
 				output.setText(input.getText().toString());
 			}
 			public void beforeTextChanged(CharSequence s,int start, int count, int after){}
@@ -76,10 +81,16 @@ public class MainActivity extends Activity
 					public void onClick(DialogInterface dialog, int whichButton){
 						dialog.dismiss();
 						int pos = ((AlertDialog)dialog).getListView().getCheckedItemPosition();
-						choice = pos;
-						output.setTypeface(Languages[choice]);
-						output.setTextSize(LanguagesSize[choice]);
-						Toast.makeText(getApplicationContext(),LanguagesNames[choice],Toast.LENGTH_SHORT).show();
+						if (choice != pos){
+							if (!changed){
+								convert.setEnabled(true);
+								changed = true;
+							}
+							choice = pos;
+							output.setTypeface(Languages[choice]);
+							output.setTextSize(LanguagesSize[choice]);
+							Toast.makeText(getApplicationContext(),LanguagesNames[choice],Toast.LENGTH_SHORT).show();
+						}
 					}
 				}).show();
 			}
@@ -87,6 +98,8 @@ public class MainActivity extends Activity
 		
 		convert.setOnClickListener(new OnClickListener(){
 			public void onClick(View p1){
+				convert.setEnabled(false);
+				changed = false;
 				TextView glyphs = output;
 				glyphs.setDrawingCacheEnabled(true);
 				glyphs.destroyDrawingCache();
