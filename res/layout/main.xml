@@ -4,12 +4,21 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
+	android:id="@+id/mainLayout"
     android:orientation="vertical" >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical" >
+	
+	<com.google.ads.AdView android:id="@+id/adView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		ads:adUnitId="a151b7590ca7869"
+		ads:adSize="BANNER"
+		ads:loadAdOnCreate="true"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,6 +36,7 @@
 		android:gravity="center" />
 	
 	<EditText
+		android:imeOptions="flagNoExtractUi"
 		android:id="@+id/input"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"

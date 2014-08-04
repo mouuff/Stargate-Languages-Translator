@@ -22,18 +22,21 @@ public final class R {
         public static final int wraith=0x7f020008;
     }
     public static final class id {
-        public static final int changeLangage=0x7f050008;
-        public static final int convert=0x7f050006;
+        public static final int adView=0x7f050004;
+        public static final int background=0x7f05000e;
+        public static final int changeLangage=0x7f05000a;
+        public static final int conv=0x7f05000d;
+        public static final int convert=0x7f050008;
         public static final int dimiss=0x7f050002;
-        public static final int donate=0x7f05000b;
-        public static final int emailme=0x7f05000a;
+        public static final int emailme=0x7f05000c;
         public static final int facts=0x7f050001;
-        public static final int hello=0x7f050003;
+        public static final int hello=0x7f050005;
         public static final int image=0x7f050000;
-        public static final int input=0x7f050005;
-        public static final int output=0x7f050004;
-        public static final int rateit=0x7f050009;
-        public static final int showAlphabet=0x7f050007;
+        public static final int input=0x7f050007;
+        public static final int mainLayout=0x7f050003;
+        public static final int output=0x7f050006;
+        public static final int rateit=0x7f05000b;
+        public static final int showAlphabet=0x7f050009;
     }
     public static final class layout {
         public static final int alphabet=0x7f030000;

@@ -13,6 +13,9 @@ import java.net.*;
 import java.io.*;
 import android.text.*;
 import android.net.*;
+import com.google.ads.*;
+import android.database.*;
+import java.math.*;
 
 public class MainActivity extends Activity
 {
@@ -28,6 +31,44 @@ public class MainActivity extends Activity
 		copy.setPixels(pixels, 0, width, 0, 0, width, height);
 		return copy;
 	}
+	
+	public void decodeImage(Uri uri){
+		Typeface Ancient = Typeface.createFromAsset(getAssets(),"fonts/anquietas.ttf");
+		Typeface Wraith = Typeface.createFromAsset(getAssets(),"fonts/wraith.ttf");
+		Typeface Asgard = Typeface.createFromAsset(getAssets(),"fonts/asgard.ttf");
+		Typeface Goauld1 = Typeface.createFromAsset(getAssets(),"fonts/goa_uld1.ttf");
+		Typeface Furling = Typeface.createFromAsset(getAssets(),"fonts/Furling.ttf");
+		Typeface Nox = Typeface.createFromAsset(getAssets(),"fonts/Nox.ttf");
+
+		final Typeface[] Languages= {Ancient,Asgard,Wraith,Goauld1, Furling, Nox};
+		final String[] LanguagesNames = {"Ancient","Asgard","Wraith","Goa'uld", "Furling","Nox"};
+		final int[] LanguagesSize = {35, 23, 45, 27,38,25};
+
+		final TextView output = (TextView) findViewById(R.id.output);
+		final EditText input = (EditText) findViewById(R.id.input);
+
+		String[] projection = {MediaStore.Images.Media.DESCRIPTION};
+		try {
+			Cursor c = MediaStore.Images.Media.query(getContentResolver(),uri,projection);
+			c.moveToFirst();
+			String data = c.getString(c.getColumnIndex(MediaStore.Images.Media.DESCRIPTION));
+			String msg = data.split(";")[1];
+			String lang = data.split(";")[0];
+			output.setText(msg);
+			for (int ix=0;ix<LanguagesNames.length;ix++){
+				if (LanguagesNames[ix].equals(lang)){
+					choice = ix;
+					output.setTypeface(Languages[choice]);
+					output.setTextSize(LanguagesSize[choice]);
+				}
+			}
+
+			input.setText(msg);
+		}catch(Exception e){
+			input.setText(e.getMessage());
+		}
+	}
+	
 	final Context context = this;
 	int choice = 0;
 	boolean changed = false;
@@ -53,13 +94,24 @@ public class MainActivity extends Activity
 		Typeface Nox = Typeface.createFromAsset(getAssets(),"fonts/Nox.ttf");
 		
 		final Typeface[] Languages= {Ancient,Asgard,Wraith,Goauld1, Furling, Nox};
-		final String[] LanguagesNames = {"Ancient","Asgard","Wraith","Goa'uld (decorative)", "Furling","Nox"};
+		final String[] LanguagesNames = {"Ancient","Asgard","Wraith","Goa'uld", "Furling","Nox"};
 		final int[] LanguagesSize = {35, 23, 45, 27,38,25};
+		
 		
 		hello.setTextSize(15);
 		output.setTextSize(35);
 		
 		output.setTypeface(Ancient);
+		
+		AdView adView = (AdView)this.findViewById(R.id.adView);
+		adView.loadAd(new AdRequest());
+		
+		Intent intent = getIntent();
+		
+		if (intent.getData()!=null){
+			decodeImage(intent.getData());
+		}
+		
 		
 		input.addTextChangedListener(new TextWatcher() {
 			public void afterTextChanged(Editable s){
@@ -104,7 +156,7 @@ public class MainActivity extends Activity
 				glyphs.setDrawingCacheEnabled(true);
 				glyphs.destroyDrawingCache();
 				Bitmap image = getTransparentBitmapCopy(glyphs.getDrawingCache());
-				MediaStore.Images.Media.insertImage(getContentResolver(),image,input.getText().toString(),"Ancient");
+				MediaStore.Images.Media.insertImage(getContentResolver(),image,input.getText().toString(),LanguagesNames[choice]+";"+input.getText().toString().replace(";",","));
 				
 				Toast.makeText(getApplicationContext(),"Saved glyphs to your gallery ready to share!",Toast.LENGTH_LONG).show();
 			}
@@ -172,7 +224,7 @@ public class MainActivity extends Activity
 			    Intent i = new Intent(Intent.ACTION_SEND);
 				i.setType("message/rfc822");
 				i.putExtra(Intent.EXTRA_EMAIL, new String[]{"arnaudalies.py@gmail.com"});
-				i.putExtra(Intent.EXTRA_SUBJECT,"Feedback of Stargate langages translator");
+				i.putExtra(Intent.EXTRA_SUBJECT,"Feedback of Stargate languages translator");
 				try{
 					startActivity(Intent.createChooser(i,"Send mail..."));
 				}
@@ -184,12 +236,27 @@ public class MainActivity extends Activity
 			case R.id.rateit:
 			    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.mou.stargatetranslator")));
 				return true;
-			case R.id.donate:
-			    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.mou.donate")));
-				return true;
-			
+				
+			case R.id.conv:
+				//Uri uri = intent.getData();
+				//Bitmap image = BitmapFactory.decodeFile(uri);
+				Intent intent = new Intent();
+
+				intent.setType("image/*");
+
+				intent.setAction(Intent.ACTION_GET_CONTENT);
+
+				startActivityForResult(Intent.createChooser(intent,"Select Picture"), 1);
+			return true;
+				
 			default:
 			    return false;
+		}
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent d) {
+		if (resultCode == RESULT_OK) {
+			decodeImage(d.getData());
 		}
 	}
 }

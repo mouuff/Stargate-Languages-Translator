@@ -9,6 +9,6 @@
 		android:id="@+id/emailme"
 		android:title="Email developer" />
 	<item
-		android:id="@+id/donate"
-		android:title="Donate"/>
+		android:id="@+id/conv"
+		android:title="Convert image" />
 </menu>
